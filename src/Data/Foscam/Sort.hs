@@ -10,7 +10,7 @@ import Data.Either(either)
 import Data.Foldable(Foldable, mapM_)
 import Data.Foscam.Directory(getFoscamDirectoryContents, FoscamDirectoryFile, _FoscamDirectory, _FoscamFilename, _Is)
 import Data.Foscam.File(getFilename)
-import Data.Foscam.Sort.FilenamePath(FilenamePath, yyyy, mm, dd, nn, (/<>/), (~/>))
+import Data.Foscam.Sort.FilenamePath(FilenamePath, yyyy, mm, dd, hh, nn, deviceIdpath, aliaspath, (/<>/), (~/>))
 import Data.Maybe(maybe)
 import Data.Monoid((<>))
 import System.Directory(doesFileExist, getPermissions, readable, renameFile, doesFileExist, createDirectoryIfMissing)
@@ -26,7 +26,20 @@ foscamsort =
      case a of
        (i:o:_) ->
          getFoscamDirectoryContents i >>=
-         mapM_ (move o (yyyy <> mm <> dd) [yyyy, yyyy /<>/ mm, yyyy /<>/ mm /<>/ dd, yyyy /<>/ mm /<>/ dd /<>/ nn]) 
+         mapM_ (move o (yyyy <> mm <> dd)
+          [
+            yyyy <> mm
+          , yyyy <> mm <> dd
+          , yyyy <> mm <> dd <> hh
+          , yyyy <> mm <> dd <> hh <> mm
+          , yyyy /<>/ mm /<>/ dd
+          , yyyy /<>/ mm /<>/ dd /<>/ hh
+          , yyyy /<>/ mm /<>/ dd /<>/ hh /<>/ nn
+          , deviceIdpath /<>/ yyyy /<>/ mm /<>/ dd
+          , deviceIdpath /<>/ yyyy /<>/ mm /<>/ dd /<>/ hh
+          , aliaspath /<>/ yyyy /<>/ mm /<>/ dd
+          , aliaspath /<>/ yyyy /<>/ mm /<>/ dd /<>/ hh
+          ]) 
        _ ->
          do p <- getProgName
             hPutStrLn stderr ("Usage: " <> p <> " <foscam-files-directory> <sort-output-directory>")
