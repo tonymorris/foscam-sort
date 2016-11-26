@@ -1,5 +1,5 @@
 name:               foscam-sort
-version:            0.0.2
+version:            0.0.3
 license:            BSD3
 license-file:       LICENSE
 author:             Tony Morris <ʇǝu˙sıɹɹoɯʇ@ןןǝʞsɐɥ> <dibblego>
@@ -28,12 +28,14 @@ library
                     Haskell2010
 
   build-depends:
-                        base             >= 4     && < 5
+                      base             >= 4     && < 5
                     , lens             >= 4.0   && < 5
                     , digit            >= 0.1.2 && < 0.2
-                    , filepath, directory, unix
+                    , filepath
+                    , directory
+                    , unix
                     , foscam-filename  == 0.0.4
-                    , foscam-directory == 0.0.7
+                    , foscam-directory == 0.0.8
 
   ghc-options:
                     -Wall
@@ -62,7 +64,7 @@ executable foscam-sort
                     , digit            >= 0.1.2 && < 0.2
                     , filepath, directory, unix
                     , foscam-filename  == 0.0.4
-                    , foscam-directory == 0.0.7
+                    , foscam-directory == 0.0.8
 
   ghc-options:
                     -Wall

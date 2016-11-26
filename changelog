@@ -1,3 +1,8 @@
+0.0.3
+
+* Update output directories.
+* Update foscam-directory dependency.
+
 0.0.2
 
 * Fix modules in cabal file.

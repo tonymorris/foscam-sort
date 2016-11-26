@@ -28,17 +28,10 @@ foscamsort =
          getFoscamDirectoryContents i >>=
          mapM_ (move o (yyyy <> mm <> dd)
           [
-            yyyy <> mm
-          , yyyy <> mm <> dd
-          , yyyy <> mm <> dd <> hh
-          , yyyy <> mm <> dd <> hh <> mm
-          , yyyy /<>/ mm /<>/ dd
-          , yyyy /<>/ mm /<>/ dd /<>/ hh
-          , yyyy /<>/ mm /<>/ dd /<>/ hh /<>/ nn
-          , deviceIdpath /<>/ yyyy /<>/ mm /<>/ dd
-          , deviceIdpath /<>/ yyyy /<>/ mm /<>/ dd /<>/ hh
-          , aliaspath /<>/ yyyy /<>/ mm /<>/ dd
-          , aliaspath /<>/ yyyy /<>/ mm /<>/ dd /<>/ hh
+            yyyy <> mm <> dd
+          , yyyy <> mm <> dd /<>/ hh <> nn
+          , aliaspath /<>/ yyyy <> mm <> dd
+          , aliaspath /<>/ yyyy <> mm <> dd /<>/ hh <> nn
           ]) 
        _ ->
          do p <- getProgName
